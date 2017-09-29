@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 
 class QuestionManager(models.Manager):
     def new():
-        pass
+        return self.order_by('-added_at')
     def popular():
-        pass
+        return self.order_by('-rating')
 
 class Question(models.Model):
     objects = QuestionManager()
