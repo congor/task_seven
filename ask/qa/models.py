@@ -33,4 +33,4 @@ class Answer(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-return self.text
+        return self.text
