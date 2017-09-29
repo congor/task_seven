@@ -11,7 +11,7 @@ class QuestionManager(models.Manager):
         pass
 
 class Question(models.Model):
-    object = QuestionManager()
+    objects = QuestionManager()
     title = models.CharField(default="", max_length=1024)
     text = models.TextField(default="")
     added_at = models.DateField(null=True)
