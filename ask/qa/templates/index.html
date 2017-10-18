@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<nav>
+	<ul>		
+	{% for p in paginator.page_range %}
+	{% if p == page.number %}
+		<li style="color: blue">
+	{% else %}
+		<li>
+	{% endif %}
+			<a href="?page={{ p }}"> {{ p }} </a>
+		</li>
+   {%  endfor %}
+	</ul>
+</nav>
+<div>
+<ul>
+{% for q in page %}
+	<li> <a href="{{ q.get_absolute_url }}"> {{ q.title }} </a> </li>
+	{% endfor %}
+</ul>
+{{ paginator.baseurl }}
+</div>
+{% endblock content %}

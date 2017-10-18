@@ -19,8 +19,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^question/(?P<id>\d+)/$', 'qa.views.test'),
-    url(r'^$', 'qa.views.test'),
+    url(r'^question/(?P<id>\d+)/$', "qa.views.question_details", name='details'), #4 name link to get_absolute_url in Question-model
+    url(r'^$', 'qa.views.main'), #3
     url(r'^login/$', 'qa.views.test'),
     url(r'^signup/$', 'qa.views.test'),
     url(r'^ask/$', 'qa.views.test'),

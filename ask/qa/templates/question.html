@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+<h1>{{ title }}</h1>
+<ul>
+ <li> {{ instance.title }} </li>
+ <li> {{ instance.id }} </li>
+ <li> {{ instance.text}} </li>
+ <li> {{ instance.added_at }} </li>
+ <li> {{ instance.rating }} </li>
+ <li> {{ instance.autor }} </li>
+ <li> {{ instance.likes }} </li>
+</ul>
+</div>
+{% endblock content %}
+
+
+
