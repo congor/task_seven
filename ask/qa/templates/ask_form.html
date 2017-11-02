@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+<h1>{{ title }}</h1>
+<ul>
+ {% for e in form.non_field_errors %}
+  <div bgcolor="red"> {{ e }} </div>
+ {% endfor %}
+ <form method="post" action="/ask/">
+ {% csrf_token %}
+  <fieldset>
+   {% for field in form %}
+   <div 
+   {% if field.errors %}bgcolor="red"{% endif %}>
+    <label>{{ field.label }}</label>
+    <div>{{ field }}</div>
+   </div>
+   {% endfor %}
+  </fieldset>
+ <div>
+  <button type="submit">Сохранить</button>
+ </div>
+</form>
+</ul>
+</div>
+{% endblock content %}
