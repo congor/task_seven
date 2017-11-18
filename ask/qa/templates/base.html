@@ -4,6 +4,16 @@
 	<title> {{title}} </title>
 </head>
 <body  bgcolor="lightgrey">
+<div style="display: block; border: black solid 1px; padding: 5px">
+<p> id cессии: {{ request.session }} </p>
+	{% if request.user_registrated == True %}
+	 <p>Текущий пользователь: {{ request.user }} </p>
+	 <p> <a href="/logout/">Выход</a> </p>
+	 {% else %}	 
+	 <p style="color: red;">Неавторизованный или незарегистрированный пользователь</p>
+	 <p><a href="/login/">Войти на сайт</a> или <a href="/signup/">Зарегистрируйтесь</a></p>	      
+ 	 {% endif %}	
+</div>
 {% block content %}{% endblock %}
 </body>
 </html>

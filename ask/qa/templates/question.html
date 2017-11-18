@@ -7,13 +7,13 @@
 <h1> Вопрос: </h1>
 <h1>{{ title }}</h1>
 <ul>
- <li> {{ instance.title }} </li>
- <li> {{ instance.id }} </li>
- <li> {{ instance.text}} </li>
- <li> {{ instance.added_at }} </li>
- <li> {{ instance.rating }} </li>
- <li> Added by {% if instance.author == None %}Неавторизованный пользователь{% else %}{{ instance.author }}{% endif %} </li>
- <li> {{ instance.likes }} </li>
+ <li> {{ question.title }} </li>
+ <li> {{ question.id }} </li>
+ <li> {{ question.text}} </li>
+ <li> {{ question.added_at }} </li>
+ <li> {{ question.rating }} </li>
+ <li> Added by {% if question.author == None %}Неавторизованный пользователь{% else %}{{ question.author }}{% endif %} </li>
+ <li> {{ question.likes }} </li>
 </ul>
 </div>
 
@@ -28,7 +28,7 @@
    {% for field in form %}
    <div
    {% if field.errors %}bgcolor="red"{% endif %}>
-    <label>{{ field.label }}</label>
+    <label>{% if field.type != hidden %}{{ field.label }}{% endif %}</label>
     <div>{{ field }}</div>
    </div>
    {% endfor %}
@@ -45,7 +45,7 @@
 {% for a in answers %}
 <div style="display: block; padding: 10px 0; border: 1px black solid">
 <ul>
- <li> Added by {% if a.author == None %}Неавторизованный пользователь{% else %}{{ a.author }}{% endif %}</li>
+ <li> Added by {% if a.author == None %}Неавторизованный пользователь{% else %}{{ a.author }}{% endif %}</li> <!-- delete Неавторизированный пользователь futher-->
  <li> {{ a.added_at }} </li>
  <li> {{ a.text}} </li>
 </ul>

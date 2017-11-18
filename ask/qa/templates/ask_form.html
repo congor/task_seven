@@ -12,15 +12,15 @@
    {% for field in form %}
    <div 
    {% if field.errors %}bgcolor="red"{% endif %}>
-    <label>{{ field.label }}</label>
+    <label>{% if field.type != hidden %}{{ field.label }}{% endif %}</label>
     <div>{{ field }}</div>
    </div>
    {% endfor %}
   </fieldset>
  <div>
-  <button type="submit">Сохранить</button>
+  <button type="submit">Задать вопрос</button>
  </div>
-</form>
+ </form>
 </ul>
 </div>
 {% endblock content %}

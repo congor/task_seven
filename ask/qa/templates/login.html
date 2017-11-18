@@ -3,10 +3,12 @@
 <div>
 <h1>{{ title }}</h1>
 <ul>
- {% for e in form.non_field_errors %}
-  <div bgcolor="red"> {{ e }} </div>
+ {% if error %}
+ {% for e in error %}
+ <div style="display: block; padding: 5px; margin: 10px 0; background-color: red;"> {{ e }} </div>
  {% endfor %}
- <form method="post" action="/answer_add/">
+ {% endif %} 
+ <form method="post" action="/login/">
  {% csrf_token %}
   <fieldset>
    {% for field in form %}
@@ -18,7 +20,7 @@
    {% endfor %}
   </fieldset>
  <div>
-  <button type="submit">Ответить</button>
+  <button type="submit">Войти</button>
  </div>
 </form>
 </ul>

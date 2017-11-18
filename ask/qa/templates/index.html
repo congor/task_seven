@@ -1,18 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<nav>
-	<ul>		
+<div style="display: block; width: 50px; margin-left: auto; margin-right: auto;">
 	{% for p in paginator.page_range %}
 	{% if p == page.number %}
-		<li style="color: blue">
+		<p style="display: inline-block; color: green"> {{p}}
 	{% else %}
-		<li>
-	{% endif %}
+		<p style="display: inline-block; color: blue">	
 			<a href="?page={{ p }}"> {{ p }} </a>
-		</li>
+		{% endif %}
+		</p>
    {%  endfor %}
-	</ul>
-</nav>
+</div>
 <div>
 <ul>
 {% for q in page %}
@@ -21,4 +19,14 @@
 </ul>
 {{ paginator.baseurl }}
 </div>
+<div style="display: block; width: 50px; margin-left: auto; margin-right: auto;">
+	{% for p in paginator.page_range %}
+	{% if p == page.number %}
+		<p style="display: inline-block; color: green"> {{p}}
+	{% else %}
+		<p style="display: inline-block; color: blue">	
+			<a href="?page={{ p }}"> {{ p }} </a>
+		{% endif %}
+		</p>
+   {%  endfor %}
 {% endblock content %}

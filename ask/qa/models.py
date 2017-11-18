@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from random import randint #7.2
+#from datetime import datetime, timedelta
 
 class QuestionManager(models.Manager):
     def new(self):
         return self.order_by('-added_at')
     def popular(self):
         return self.order_by('-rating')
-
 
 class Question(models.Model):
     objects = QuestionManager()
@@ -29,7 +30,6 @@ class Question(models.Model):
     def get_absolute_url(self): #reverse-routing to call in a template index.html
         return reverse('details', kwargs={'id': self.id}) #4. 'details' means the name of a url-route (see urls.py) 'id' is also from 'details'
 
-
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
@@ -44,3 +44,29 @@ class Answer(models.Model):
 
     def get_absolute_url(self): #6.2!
         return reverse('answer_details', kwargs={'id': self.id}) #6.2!
+
+class Session(models.Model): #7.3
+    key = models.CharField(max_length=255)
+    user = models.ForeignKey(User, null=True)
+    start = models.DateTimeField(auto_now_add=True)
+    finish = models.DateTimeField(null=True)
+    
+    def __str__(self):
+        return self.key
+
+def do_login(login, password): #7.4
+    try:
+        user = User.objects.get(username = login)
+    except User.DoesNotExist:
+        return None
+    hashed_pass = password #do something - encoding
+
+    if user.password != hashed_pass:
+        return None
+
+    session = Session() #
+    session.key = str(randint(10,99)) + str(randint(10,99)) + str(randint(10,99)) #
+    session.user = user
+    #session.expires = datetime.now() + timedelta(days = 1)
+    session.save()
+    return session.key
