@@ -20,7 +20,7 @@ class Question(models.Model):
     likes = models.ManyToManyField(User, related_name="question_like", blank=True) # 'blank=True' means the a field can be unfilled, it's not necessary to fill this field, !for user data checking! in an input form
 
     class Meta:
-        ordering = ('-added_at',)
+        ordering = ('-added_at') # Default ordering in Django-admin interface
         verbose_name = "Вопрос"
         verbose_name_plural = "Вопросы"
 
